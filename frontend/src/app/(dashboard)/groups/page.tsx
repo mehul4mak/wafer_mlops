@@ -20,7 +20,32 @@ export default function GroupsPage() {
     queryFn: groupsApi.list,
   });
 
-  if (isLoading) return <div className="animate-pulse space-y-3">{[...Array(3)].map((_, i) => <div key={i} className="h-24 bg-gray-200 rounded-xl" />)}</div>;
+  if (isLoading) return (
+    <div className="max-w-4xl mx-auto space-y-6 animate-pulse">
+      <div className="flex items-center justify-between">
+        <div className="h-7 bg-gray-200 rounded-lg w-36" />
+        <div className="flex gap-3">
+          <div className="h-10 bg-gray-100 rounded-xl w-28" />
+          <div className="h-10 bg-gray-200 rounded-xl w-28" />
+        </div>
+      </div>
+      <div className="grid gap-4">
+        {[...Array(4)].map((_, i) => (
+          <div key={i} className="bg-white rounded-2xl p-6 shadow-sm flex items-center gap-4">
+            <div className="w-12 h-12 bg-gray-200 rounded-full shrink-0" />
+            <div className="flex-1 space-y-2">
+              <div className="h-5 bg-gray-200 rounded w-1/3" />
+              <div className="h-3.5 bg-gray-100 rounded w-1/4" />
+            </div>
+            <div className="text-right space-y-1.5 shrink-0">
+              <div className="h-3 bg-gray-100 rounded w-20 ml-auto" />
+              <div className="h-5 bg-gray-200 rounded w-24" />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 
   return (
     <div className="max-w-4xl mx-auto space-y-6">

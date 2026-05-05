@@ -49,8 +49,17 @@ export default function NotificationsPage() {
       </div>
 
       {isLoading && (
-        <div className="animate-pulse space-y-3">
-          {[...Array(5)].map((_, i) => <div key={i} className="h-16 bg-gray-200 rounded-xl" />)}
+        <div className="space-y-2 animate-pulse">
+          {[...Array(6)].map((_, i) => (
+            <div key={i} className="bg-white rounded-xl p-4 shadow-sm flex gap-3 items-start">
+              <div className="w-8 h-8 bg-gray-200 rounded-full shrink-0 mt-0.5" />
+              <div className="flex-1 space-y-2">
+                <div className="h-3.5 bg-gray-200 rounded w-2/3" />
+                <div className="h-3 bg-gray-100 rounded w-full" />
+                <div className="h-2.5 bg-gray-100 rounded w-20" />
+              </div>
+            </div>
+          ))}
         </div>
       )}
 

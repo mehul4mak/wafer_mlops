@@ -15,7 +15,7 @@ export default function DashboardPage() {
     queryFn: dashboardApi.get,
   });
 
-  if (isLoading) return <div className="animate-pulse space-y-4"><div className="h-32 bg-gray-200 rounded-xl" /><div className="h-64 bg-gray-200 rounded-xl" /></div>;
+  if (isLoading) return <DashboardSkeleton />;
 
   return (
     <div className="space-y-6 max-w-6xl mx-auto">
@@ -135,6 +135,54 @@ function StatCard({ label, value, color, bg, icon }: { label: string; value: str
         <span className="text-xl">{icon}</span>
       </div>
       <p className={`text-2xl font-bold ${color}`}>{value}</p>
+    </div>
+  );
+}
+
+function DashboardSkeleton() {
+  return (
+    <div className="space-y-6 max-w-6xl mx-auto animate-pulse">
+      {/* Header */}
+      <div className="space-y-2">
+        <div className="h-7 bg-gray-200 rounded-lg w-56" />
+        <div className="h-4 bg-gray-100 rounded w-44" />
+      </div>
+      {/* Stat Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {[...Array(4)].map((_, i) => (
+          <div key={i} className="bg-gray-100 rounded-2xl p-5 space-y-3">
+            <div className="flex justify-between items-center">
+              <div className="h-3 bg-gray-200 rounded w-24" />
+              <div className="w-6 h-6 bg-gray-200 rounded-full" />
+            </div>
+            <div className="h-7 bg-gray-200 rounded w-28" />
+          </div>
+        ))}
+      </div>
+      {/* Chart + Activity */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-2 bg-white rounded-2xl p-6 shadow-sm space-y-4">
+          <div className="h-5 bg-gray-200 rounded w-36" />
+          <div className="flex items-end gap-2 h-40">
+            {[60, 80, 45, 90, 55, 70].map((h, i) => (
+              <div key={i} className="flex-1 bg-gray-100 rounded-t" style={{ height: `${h}%` }} />
+            ))}
+          </div>
+        </div>
+        <div className="bg-white rounded-2xl p-6 shadow-sm space-y-4">
+          <div className="h-5 bg-gray-200 rounded w-28" />
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="flex items-center gap-3">
+              <div className="w-7 h-7 bg-gray-100 rounded-full shrink-0" />
+              <div className="flex-1 space-y-1.5">
+                <div className="h-3 bg-gray-200 rounded w-3/4" />
+                <div className="h-2.5 bg-gray-100 rounded w-1/2" />
+              </div>
+              <div className="h-4 bg-gray-200 rounded w-14 shrink-0" />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
